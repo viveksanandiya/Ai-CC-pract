@@ -1,25 +1,19 @@
-colors = ["Red","Blue","Green"]
-#states = ["WA","NT","SA","Q","NSW","V"]
-states = ["A","B","C","D"]
-#neighbours = {"WA":["NT","SA"],"NT":["WA","SA","Q"],"SA":["WA","NT","Q","NSW","V"], "Q":["NT","SA","NSW"], "NSW":["Q","SA","V"],"V":["NSW","SA"]}
-neighbours = {"A":["B","D","C"], "B":["A","D"], "D":["B","A","C"], "C":["A","D"]}
-colors_of_states={}
+def selectionSort(array, size):
+    for step in range(size):
+        min_idx = step
+        for i in range(step + 1, size):
+            # select the minimum element in each loop
+            if array[i] < array[min_idx]:
+                min_idx = i
+    # put min at the correct position
+        (array[step], array[min_idx]) = (array[min_idx], array[step])
+    
+#main code
+data = [2, 45, 0, 11, 9]
+size = len(data)
+selectionSort(data, size)
+print('Sorted Array in Ascending Order:')
 
-def promising(state,color):
-	for neighbour in neighbours.get(state):
-		color_of_neighbour = colors_of_states.get(neighbour)
-		if color_of_neighbour == color:
-			return False
-	return True
-
-def get_color_for_state(state):
-	for color in colors:
-		if promising(state,color):
-			return color
-
-def main():
-	for state in states:
-		colors_of_states[state] = get_color_for_state(state)
-	print(colors_of_states)
-
-main()
+for element in data:
+    print(element)
+	
